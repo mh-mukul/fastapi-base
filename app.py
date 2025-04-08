@@ -15,9 +15,9 @@ load_dotenv()
 DEBUG = bool(int(os.getenv("DEBUG", 1)))
 
 app = FastAPI(
-    title="Telegram Bot Backend",
-    description="This is Telegram Bot Backend API Documentation",
-    version="2.0.0",
+    title="FastAPI Backend",
+    description="This is FastAPI Backend API Documentation",
+    version="1.0.0",
     docs_url="/docs" if DEBUG else None,  # Disable Swagger UI
     redoc_url="/redoc" if DEBUG else None,  # Disable ReDoc
     openapi_url="/openapi.json" if DEBUG else None,  # Disable OpenAPI
