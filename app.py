@@ -8,7 +8,7 @@ from handlers.custom_exceptions import APIKeyException
 from handlers.exception_handler import (
     validation_exception_handler, general_exception_handler, api_key_exception_handler)
 
-from routes import api_key
+from routes import todos
 
 load_dotenv()
 
@@ -40,7 +40,7 @@ app.add_exception_handler(APIKeyException, api_key_exception_handler)
 
 
 # Include routes
-app.include_router(api_key.router, prefix="/api/v1")
+app.include_router(todos.router, prefix="/api/v1")
 
 
 @app.get("/")
