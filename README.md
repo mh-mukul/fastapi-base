@@ -79,4 +79,34 @@ Or you can build and run the Docker container in a single command:
 docker-compose up -d --build
 ```
 
-This will start the application in a detached mode. You can then access the application at `http://localhost:8001`.
+This will start the application in a detached mode. You can then access the application at `http://localhost:8001` or the port you specified by DOCKER_PORT in the .env file.
+
+To stop the Docker container, run the following command:
+
+```bash
+docker-compose down
+```
+
+To view the logs of the running container, run the following command:
+
+```bash
+docker-compose logs -f
+```
+
+To run the database migrations inside the Docker container, you can use the following command:
+
+```bash
+docker-compose exec fastapi_backend alembic upgrade head
+```
+
+To run the CLI commands inside the Docker container, you can use the following command:
+
+```bash
+docker-compose exec fastapi_backend python cli.py <command>
+```
+
+To browse files inside the Docker container, you can use the following command:
+
+```bash
+docker-compose exec fastapi_backend bash
+```
