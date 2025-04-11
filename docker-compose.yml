@@ -1,9 +1,9 @@
 services:
   # FastAPI app service
-  telebot:
+  fastapi_backend:
     build: .
-    container_name: telebot_backend
-    image: telebot_backend
+    container_name: fastapi_backend
+    image: fastapi_backend
     restart: always
     ports:
       - "${DOCKER_PORT:-8001}:8001"

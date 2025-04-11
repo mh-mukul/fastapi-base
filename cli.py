@@ -15,15 +15,17 @@ def generate_key(db: Session = Depends(get_db)):
 
     db.add(api_key)
     db.commit()
-
-    print(f"New API key generated: {new_key}")
+    print("API key generated successfully.\nShow? (y/n)")
+    show = input().strip().lower()
+    if show == "y":
+        print(f"API key: {api_key.key}")
 
 
 def main():
     db = next(get_db())
     parser = argparse.ArgumentParser(description="Management Commands")
     parser.add_argument("command", help="Command to run",
-                        choices=["generate_key", "create_department", "create_superuser", "create_module", "create_permission"])
+                        choices=["generate_key",])
 
     args = parser.parse_args()
 

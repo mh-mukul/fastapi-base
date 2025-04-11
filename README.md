@@ -31,6 +31,7 @@ Technologies used:
 - You can now start building your application on top of this base application.
 
 API Documentation Endpoints(Avaliable only in debug mode):
+
 - `/docs`: Swagger UI documentation for the API endpoints.
 - `/redoc`: ReDoc documentation for the API endpoints.
 
@@ -55,9 +56,8 @@ alembic upgrade head
 
 The following cli commands are available:
 
-*   `python cli.py`:
-    *   `generate_key`: Generates a new secret key.
-
+- `python cli.py`:
+  - `generate_key`: Generates a new secret key.
 
 ### Deployment
 
