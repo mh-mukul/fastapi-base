@@ -14,7 +14,3 @@ class Todo(AbstractBase):
 
     def __repr__(self):
         return f"{self.id}"
-
-    @classmethod
-    def get_active(cls, db: Session):
-        return db.query(cls).filter(cls.is_deleted == False)

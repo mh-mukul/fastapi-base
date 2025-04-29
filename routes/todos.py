@@ -22,8 +22,7 @@ async def get_todos(
     db: Session = Depends(get_db),
     _: None = Depends(get_api_key)
 ):
-    query = db.query(Todo).filter(
-        Todo.is_deleted == False)
+    query = Todo.get_active(db)
 
     total_records = query.count()
     total_pages = (total_records + limit - 1) // limit
@@ -136,7 +135,7 @@ async def delete_todo(
     if not todo:
         return response.error_response(404, "Todo not found")
 
-    todo.is_deleted = True
+    todo.soft_delete()
     db.commit()
 
     return response.success_response(200, "Todo deleted successfully")
