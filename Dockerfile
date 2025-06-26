@@ -2,19 +2,21 @@ FROM python:3.10-slim
 
 WORKDIR /app
 
-# Copy only requirements.txt first to leverage caching
-COPY requirements.txt /app/
+# Install system dependencies (optional if needed)
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    bash \
+    && rm -rf /var/lib/apt/lists/*
 
-# Install dependencies before copying source code to prevent cache busting
+# Install Python dependencies
+COPY requirements.txt .
 RUN pip install --no-cache-dir --upgrade pip setuptools wheel \
-    && pip install --no-cache-dir -r /app/requirements.txt
+    && pip install --no-cache-dir -r requirements.txt
 
-# Copy only necessary application files (avoid copying unnecessary files)
-COPY . /app/
+# Copy all app source code
+COPY . .
 
-# # Copy the entrypoint script separately and ensure it has execution permissions
-# COPY docker-entrypoint.sh /app/docker-entrypoint.sh
-# RUN chmod +x /app/docker-entrypoint.sh
+# Ensure entrypoint script has proper permissions
+RUN chmod +x /app/docker-entrypoint.sh
 
-# Set the entrypoint
+# Run entrypoint
 ENTRYPOINT ["bash", "/app/docker-entrypoint.sh"]
