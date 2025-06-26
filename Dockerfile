@@ -15,8 +15,5 @@ RUN pip install --no-cache-dir --upgrade pip setuptools wheel \
 # Copy all app source code
 COPY . .
 
-# Ensure entrypoint script has proper permissions
-RUN chmod +x /app/docker-entrypoint.sh
-
 # Run entrypoint
-ENTRYPOINT ["bash", "/app/docker-entrypoint.sh"]
+ENTRYPOINT ["bash", "docker-entrypoint.sh"]
