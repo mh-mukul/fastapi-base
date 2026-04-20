@@ -6,7 +6,7 @@ services:
     image: fastapi_backend
     restart: always
     ports:
-      - "${DOCKER_PORT:-8001}:8001"
+      - "${DOCKER_PORT:-8000}:8000"
     environment:
       - TZ=Asia/Dhaka
     volumes:
@@ -14,7 +14,7 @@ services:
       - ./:/app
     networks:
       - custom-network
-    command: uvicorn app:app --host 0.0.0.0 --port 8001 --workers 4 --timeout-keep-alive 60
+    command: uvicorn src.main:app --host 0.0.0.0 --port 8000 --workers 4 --timeout-keep-alive 60
 
 networks:
   custom-network:

@@ -26,8 +26,8 @@ Technologies used:
 - Install the requirements from requirements.txt by running `pip install -r requirements.txt`.
 - Create a .env file from `example.env` and fill up the variables.
 - You can select the database of your choice. By default, the application is configured to use SQLite. If you want to use MysQL set `DB_TYPE` to `mysql` and fill up the MYSQL variables.
-- Run the application by running `uvicorn app:app --host 0.0.0.0 --port 8001 --reload`. The application server will be running on port 8001 & watch for any changes. Change to your desired port if needed.
-- Visit `http://localhost:8001` to verify if the application server has started successfully.
+- Run the application by running `uvicorn src.main:app --host 0.0.0.0 --port 8000 --reload`. The application server will be running on port 8000 & watch for any changes. Change to your desired port if needed.
+- Visit `http://localhost:8000` to verify if the application server has started successfully.
 - You can now start building your application on top of this base application.
 
 API Documentation Endpoints(Avaliable only in debug mode):
@@ -79,7 +79,7 @@ Or you can build and run the Docker container in a single command:
 docker-compose up -d --build
 ```
 
-This will start the application in a detached mode. You can then access the application at `http://localhost:8001` or the port you specified by DOCKER_PORT in the .env file.
+This will start the application in a detached mode. You can then access the application at `http://localhost:8000` or the port you specified by DOCKER_PORT in the .env file.
 
 To stop the Docker container, run the following command:
 

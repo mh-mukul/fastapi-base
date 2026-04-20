@@ -2,13 +2,13 @@ from datetime import datetime
 from sqlalchemy.orm import Session
 from fastapi import APIRouter, Request, Depends
 
-from config.logger import logger
-from config.database import get_db
-from utils.auth import get_api_key
-from utils.helper import ResponseHelper
+from src.config.logger import logger
+from src.config.database import get_db
+from src.utils.auth import get_api_key
+from src.utils.helper import ResponseHelper
 
-from models.todo import Todo
-from schemas.todo import TodoCreate, TodoUpdate, TodoGet, Pagination, TodoListResponse
+from src.models.todo import Todo
+from src.schemas.todo import TodoCreate, TodoUpdate, TodoGet, Pagination, TodoListResponse
 
 router = APIRouter(prefix="/todos", tags=["Todos"])
 response = ResponseHelper()

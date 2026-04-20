@@ -1,7 +1,7 @@
 from sqlalchemy.orm import Session
 from sqlalchemy import Column, Integer, String, Boolean
 
-from models.abstract import AbstractBase
+from src.models.abstract import AbstractBase
 
 
 class Todo(AbstractBase):

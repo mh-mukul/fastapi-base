@@ -2,7 +2,7 @@ from fastapi import FastAPI, Request
 from fastapi.responses import JSONResponse
 from fastapi.exceptions import RequestValidationError
 
-from handlers.custom_exceptions import APIKeyException
+from src.handlers.custom_exceptions import APIKeyException
 
 app = FastAPI()
 

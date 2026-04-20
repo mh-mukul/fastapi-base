@@ -4,11 +4,11 @@ from dotenv import load_dotenv
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.exceptions import RequestValidationError
 
-from handlers.custom_exceptions import APIKeyException
-from handlers.exception_handler import (
+from src.handlers.custom_exceptions import APIKeyException
+from src.handlers.exception_handler import (
     validation_exception_handler, general_exception_handler, api_key_exception_handler)
 
-from routes import todos
+from src.routes import todos
 
 load_dotenv()
 
@@ -46,3 +46,8 @@ app.include_router(todos.router, prefix="/api/v1")
 @app.get("/")
 async def root():
     return {"status": 200, "message": "Server is up and running!", "data": "Made with ❤️"}
+
+
+@app.get("/health")
+async def health_check():
+    return {"status": 200, "message": "OK"}
