@@ -1,14 +1,12 @@
 import os
 import logging
-from dotenv import load_dotenv
 from logging.handlers import TimedRotatingFileHandler
 
-load_dotenv()
-LOG_DIR = os.environ.get("LOG_DIR", "./logs")
-if not os.path.exists(LOG_DIR):
-    os.mkdir(LOG_DIR)
 
-log_file = f"{LOG_DIR}/app.log"
+if not os.path.exists("./logs"):
+    os.mkdir("./logs")
+
+log_file = f"./logs/app.log"
 
 # Create a single logger instance
 logger = logging.getLogger("app_logger")

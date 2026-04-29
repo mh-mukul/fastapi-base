@@ -1,9 +1,12 @@
 import os
+from contextlib import asynccontextmanager
 from fastapi import FastAPI
 from dotenv import load_dotenv
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.exceptions import RequestValidationError
 
+from src.config.database import Base, engine
+from src import models  # noqa: F401  ensure models register with Base
 from src.handlers.custom_exceptions import APIKeyException
 from src.handlers.exception_handler import (
     validation_exception_handler, general_exception_handler, api_key_exception_handler)
@@ -14,6 +17,13 @@ load_dotenv()
 
 DEBUG = bool(int(os.getenv("DEBUG", 1)))
 
+
+@asynccontextmanager
+async def lifespan(app: FastAPI):
+    Base.metadata.create_all(bind=engine)
+    yield
+
+
 app = FastAPI(
     title="FastAPI Backend",
     description="This is FastAPI Backend API Documentation",
@@ -21,6 +31,7 @@ app = FastAPI(
     docs_url="/docs" if DEBUG else None,  # Disable Swagger UI
     redoc_url="/redoc" if DEBUG else None,  # Disable ReDoc
     openapi_url="/openapi.json" if DEBUG else None,  # Disable OpenAPI
+    lifespan=lifespan,
 )
 
 ALLOWED_ORIGINS = os.getenv("ALLOWED_ORIGINS", "*").split(",")
