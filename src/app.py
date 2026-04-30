@@ -18,10 +18,10 @@ load_dotenv()
 DEBUG = bool(int(os.getenv("DEBUG", 1)))
 
 
-# @asynccontextmanager
-# async def lifespan(app: FastAPI):
-#     Base.metadata.create_all(bind=engine)
-#     yield
+@asynccontextmanager
+async def lifespan(app: FastAPI):
+    Base.metadata.create_all(bind=engine)
+    yield
 
 
 app = FastAPI(
@@ -31,7 +31,7 @@ app = FastAPI(
     docs_url="/docs" if DEBUG else None,  # Disable Swagger UI
     redoc_url="/redoc" if DEBUG else None,  # Disable ReDoc
     openapi_url="/openapi.json" if DEBUG else None,  # Disable OpenAPI
-    # lifespan=lifespan,
+    lifespan=lifespan,
 )
 
 ALLOWED_ORIGINS = os.getenv("ALLOWED_ORIGINS", "*").split(",")
